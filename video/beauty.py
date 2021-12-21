@@ -106,7 +106,13 @@ def cap_invent():
 
     if cap.isOpened() :
         print "video opened"
+        invent()
 
+    cap.release()
+    cv.waitKey(0)
+    cv.destroyAllWindow()
+
+def invent(frame):
     lasttitle = ""
     frameCounter = 0
     previousFrame = None
@@ -116,24 +122,35 @@ def cap_invent():
     cv.imshow("bg",backgroundImage)
     while cap.isOpened():
         cv.waitKey(100)
-        ret,img = cap.read()
+        ret,frame = cap.read()
         if ret == False:
             print "cap read false"
         else:
-            cv.imshow("cap", img)
+            cv.imshow("cap", frame)
             try :
                 detect(img)
+                if frameCounter % 2 == 1 :
+                    nextFrame = frame
+                if frameCounter % 2 == 0:
+                    frameCounter = 0
+                    previousFrame = frame
+                frameCounter = frameCounter + 1
+                iterations = iterations + 1
+                if iterations > 2 :
+                    diff = cv.absdiff(previousFrame,nextFrame)
+                    mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
+                    th = 3
+                    isMask = mask > th
+                    nonMask = mask <= th
+                    result = np.zeros_like(nextFrame,np.uint8)
+                    resized = cv.resize(backgroundImage,(result,shape[1],result.shape[0]),interpolation = cv.INTER_AREA)
+                    result[isMask] = nextFrame[isMask]
+                    result[nonMask] = resized[nonMask]
+                    cv.imshow("invent",result)
             except:
                 print "except"
             else:
                 print "else"
-
-
-
-    cap.release()
-    cv.waitKey(0)
-    cv.destroyAllWindow()
-
 
 ###################
 #    main        #
