@@ -106,13 +106,13 @@ def cap_invent():
 
     if cap.isOpened() :
         print "video opened"
-        invent()
+        invent(cap)
 
     cap.release()
     cv.waitKey(0)
     cv.destroyAllWindow()
 
-def invent():
+def invent(cap):
     lasttitle = ""
     frameCounter = 0
     previousFrame = None
@@ -122,6 +122,7 @@ def invent():
     cv.imshow("bg",backgroundImage)
     while cap.isOpened():
         cv.waitKey(100)
+		cv.destroyAllWindows()
         ret,frame = cap.read()
         if ret == False:
             print "cap read false"
