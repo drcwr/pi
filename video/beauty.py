@@ -138,6 +138,7 @@ def invent(cap):
                 frameCounter = frameCounter + 1
                 iterations = iterations + 1
                 if iterations > 2 :
+                    print "invent",iterations
                     diff = cv.absdiff(previousFrame,nextFrame)
                     mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
                     th = 8
