@@ -140,7 +140,7 @@ def invent(cap):
                 if iterations > 2 :
                     diff = cv.absdiff(previousFrame,nextFrame)
                     mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
-                    th = 3
+                    th = 8
                     isMask = mask > th
                     nonMask = mask <= th
                     result = np.zeros_like(nextFrame,np.uint8)
