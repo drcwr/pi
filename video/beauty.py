@@ -143,6 +143,5 @@ def cap_invent():
 
 if __name__ == '__main__':
     img = cv.imread('./test.jpg')
-    detect(img)
-    # cap_detect()
+    cap_invent()
 
