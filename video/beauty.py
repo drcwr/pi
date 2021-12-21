@@ -113,7 +113,7 @@ def cap_invent():
     nextFrame = None
     iterations = 0
     backgroundImage = cv.imread("./bg.jpeg")
-    cv.imshow(backgroundImage)
+    cv.imshow("bg",backgroundImage)
     while cap.isOpened():
         cv.waitKey(100)
         ret,img = cap.read()
