@@ -129,7 +129,6 @@ def invent(cap):
         else:
             cv.imshow("cap", frame)
             try :
-                detect(img)
                 if frameCounter % 2 == 1 :
                     nextFrame = frame
                 if frameCounter % 2 == 0:
