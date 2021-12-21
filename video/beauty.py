@@ -122,7 +122,7 @@ def invent(cap):
     cv.imshow("bg",backgroundImage)
     while cap.isOpened():
         cv.waitKey(100)
-        cv.destroyAllWindows()
+        # cv.destroyAllWindows()
         ret,frame = cap.read()
         if ret == False:
             print "cap read false"
