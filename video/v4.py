@@ -145,6 +145,8 @@ while cap.isOpened():
         #cv.imwrite('test.jpg',img)
         #image = cv.imread('test.jpg')
         cv.imshow("cap", img)
+
+        # save cap image
         k = cv.waitKey(30)
         print("wait end",ord('a'),k)
         if k == ord('a') or k == ord('A'):
