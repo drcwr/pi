@@ -112,7 +112,7 @@ def cap_invent():
     cv.waitKey(0)
     cv.destroyAllWindow()
 
-def invent(frame):
+def invent():
     lasttitle = ""
     frameCounter = 0
     previousFrame = None
