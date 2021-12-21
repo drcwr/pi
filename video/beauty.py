@@ -119,7 +119,7 @@ def invent(cap):
     nextFrame = None
     iterations = 0
     backgroundImage = cv.imread("./bg.jpeg")
-    cv.imshow("bg",backgroundImage)
+    # cv.imshow("bg",backgroundImage)
     while cap.isOpened():
         cv.waitKey(100)
         # cv.destroyAllWindows()
@@ -147,6 +147,7 @@ def invent(cap):
                     resized = cv.resize(backgroundImage,(result,shape[1],result.shape[0]),interpolation = cv.INTER_AREA)
                     result[isMask] = nextFrame[isMask]
                     result[nonMask] = resized[nonMask]
+                    print "invent"
                     cv.imshow("invent",result)
             except:
                 print "except"
