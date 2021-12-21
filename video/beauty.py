@@ -150,7 +150,7 @@ def invent(cap):
                     print "invent"
                     cv.imshow("invent",result)
             except:
-                print "except"
+                print "except,%d",iterations
             else:
                 print "else"
 
