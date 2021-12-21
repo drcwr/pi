@@ -128,6 +128,7 @@ def invent(cap):
             print "cap read false"
         else:
             cv.imshow("cap", frame)
+			cv.waitKey(100)
             try :
                 if frameCounter % 2 == 1 :
                     nextFrame = frame
