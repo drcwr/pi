@@ -214,20 +214,21 @@ def bg(num):
         rect = (1,1,frame.shape[1],frame.shape[0])
         iteration = 5
 
-
-        # cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
-        #             iteration, cv.GC_INIT_WITH_RECT)
-        # cv.imshow("grabCut",fgmask)
-        # cv.waitKey(200)
-
         if show_fgmask:
             segm = fgmask
         else:
             segm = (frame * 0.5).astype('uint8')
             cv.add(frame, (100, 0, 0, 0), segm, fgmask)
-
-
         cv.imshow('some', segm)
+        cv.waitKey(200)
+
+
+
+        cv.grabCut(frame, mask, rect, bgdModel, fgdModel,
+                    iteration, cv.GC_INIT_WITH_RECT)
+        cv.imshow("grabCut",frame)
+        cv.waitKey(200)
+
         key = cv.waitKey(1) & 0xFF
         frame_num = frame_num + 1
 
