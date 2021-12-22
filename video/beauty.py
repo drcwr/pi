@@ -149,7 +149,7 @@ def invent(cap):
                     isMask = mask > th
                     nonMask = mask <= th
                     result = np.zeros_like(nextFrame,np.uint8)
-                    resized = cv.resize(backgroundImage,(result,shape[1],result.shape[0]),interpolation = cv.INTER_AREA)
+                    resized = cv.resize(backgroundImage,(result.shape[1],result.shape[0]),interpolation = cv.INTER_AREA)
                     cv.imshow("cap", resized)
                     cv.waitKey(100)
                     result[isMask] = nextFrame[isMask]
