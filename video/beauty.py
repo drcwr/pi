@@ -166,7 +166,7 @@ def invent(cap,th):
 # TODO 背景减除算法集合
 ALGORITHMS_TO_EVALUATE = [
     (cv.bgsegm.createBackgroundSubtractorGMG(20, 0.7), 'GMG'),
-    (cv.bgsegm.createBackgroundSubtractorCNT(), 'CNT'),
+    # (cv.bgsegm.createBackgroundSubtractorCNT(), 'CNT'),
     (cv.createBackgroundSubtractorKNN(), 'KNN'),
     (cv.bgsegm.createBackgroundSubtractorMOG(), 'MOG'),
     (cv.createBackgroundSubtractorMOG2(), 'MOG2'),
