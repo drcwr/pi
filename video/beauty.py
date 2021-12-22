@@ -211,6 +211,7 @@ def bg(num):
         bgdModel = np.zeros((1, 65), np.float64)
         fgdModel = np.zeros((1, 65), np.float64)
         rect = (1,1,frame.shape[1],frame.shape[0])
+        iteration = 5
 
 
         cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
