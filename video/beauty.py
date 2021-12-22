@@ -210,7 +210,7 @@ def bg(num):
         mask = np.zeros(frame.shape[:2], np.uint8)
         bgdModel = np.zeros((1, 65), np.float64)
         fgdModel = np.zeros((1, 65), np.float64)
-        rect = (1,1,result.shape[1],result.shape[0])
+        rect = (1,1,frame.shape[1],frame.shape[0])
 
 
         cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
