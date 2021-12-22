@@ -202,7 +202,7 @@ def bg():
             print "not cap"
             return
         # begin_time = time()
-        # fgmask = subtractor.apply(frame)
+        fgmask = subtractor.apply(frame)
         # end_time = time()
         # run_time = end_time - begin_time
         # sum_Time = sum_Time + run_time
