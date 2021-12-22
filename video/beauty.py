@@ -3,6 +3,7 @@ import cv2 as cv
 import os
 import numpy as np
 import time
+import sys
 
 
 # 形态学处理
@@ -101,18 +102,18 @@ def cap_detect():
     cv.destroyAllWindow()
 
 
-def cap_invent():
+def cap_invent(th):
     cap = cv.VideoCapture(0)
 
     if cap.isOpened() :
         print "video opened"
-        invent(cap)
+        invent(cap,th)
 
     cap.release()
     cv.waitKey(0)
     cv.destroyAllWindow()
 
-def invent(cap):
+def invent(cap,th):
     lasttitle = ""
     frameCounter = 0
     previousFrame = None
@@ -145,7 +146,7 @@ def invent(cap):
                     mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
                     # cv.imshow("cap", mask)
                     # cv.waitKey(100)
-                    th = 3
+                    # th = 3
                     isMask = mask > th
                     nonMask = mask <= th
                     result = np.zeros_like(nextFrame,np.uint8)
@@ -168,6 +169,9 @@ def invent(cap):
 #################
 
 if __name__ == '__main__':
-    img = cv.imread('./test.jpg')
-    cap_invent()
+    th = 3
+    if len(sys.argv) > 0:
+        th = int(sys.argv[1])
+    # img = cv.imread('./test.jpg')
+    cap_invent(th)
 
