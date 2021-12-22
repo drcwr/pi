@@ -215,7 +215,7 @@ def bg(num):
 
 
         cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
-                    iteration, cv2.GC_INIT_WITH_RECT)
+                    iteration, cv.GC_INIT_WITH_RECT)
         cv.imshow("grabCut",fgmask)
         cv.waitKey(200)
 
