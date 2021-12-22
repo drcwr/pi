@@ -194,20 +194,17 @@ def bg(num):
     # 当前帧数
     frame_num = 0
     # 总执行时间
-    sum_Time = 0.0
+    # sum_Time = 0.0
 
     while True:
         ret, frame = capture.read()
         if not ret:
             print "not cap"
             return
-        # begin_time = time()
         fgmask = subtractor.apply(frame)
-        # end_time = time()
-        # run_time = end_time - begin_time
-        # sum_Time = sum_Time + run_time
-        # 平均执行时间
-        average_Time = sum_Time / (frame_num + 1)
+
+        cv.imshow("fgmask",fgmask)
+        cv.waitKey(200)
 
         if show_fgmask:
             segm = fgmask
