@@ -127,7 +127,7 @@ def invent(cap):
         if ret == False:
             print "cap read false"
         else:
-            # cv.imshow("cap", frame)
+            cv.imshow("cap", frame)
             cv.waitKey(100)
             try :
                 if frameCounter % 2 == 1 :
@@ -140,12 +140,18 @@ def invent(cap):
                 if iterations > 2 :
                     print "invent",iterations
                     diff = cv.absdiff(previousFrame,nextFrame)
+                    cv.imshow("cap", diff)
+                    cv.waitKey(100)
                     mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
-                    th = 8
+                    cv.imshow("cap", mask)
+                    cv.waitKey(100)
+                    th = 3
                     isMask = mask > th
                     nonMask = mask <= th
                     result = np.zeros_like(nextFrame,np.uint8)
                     resized = cv.resize(backgroundImage,(result,shape[1],result.shape[0]),interpolation = cv.INTER_AREA)
+                    cv.imshow("cap", resized)
+                    cv.waitKey(100)
                     result[isMask] = nextFrame[isMask]
                     result[nonMask] = resized[nonMask]
                     print "invent"
