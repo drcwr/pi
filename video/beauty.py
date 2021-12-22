@@ -151,12 +151,12 @@ def invent(cap,th):
                     nonMask = mask <= th
                     result = np.zeros_like(nextFrame,np.uint8)
                     resized = cv.resize(backgroundImage,(result.shape[1],result.shape[0]),interpolation = cv.INTER_AREA)
-                    cv.imshow("cap", resized)
+                    # cv.imshow("cap", resized)
                     # cv.waitKey(100)
                     result[isMask] = nextFrame[isMask]
                     result[nonMask] = resized[nonMask]
                     print "invent"
-                    # cv.imshow("invent",result)
+                    cv.imshow("invent",result)
             except Exception as ex :
                 print "except,%s"%ex,iterations
             else:
@@ -170,7 +170,7 @@ def invent(cap,th):
 
 if __name__ == '__main__':
     th = 3
-    if len(sys.argv) > 0:
+    if len(sys.argv) > 1:
         th = int(sys.argv[1])
     # img = cv.imread('./test.jpg')
     cap_invent(th)
