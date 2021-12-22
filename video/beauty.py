@@ -208,32 +208,24 @@ def bg(num):
 
 
         mask = np.zeros(frame.shape[:2], np.uint8)
+        r = np.zeros(frame, np.uint8)
         bgdModel = np.zeros((1, 65), np.float64)
         fgdModel = np.zeros((1, 65), np.float64)
         rect = (1,1,frame.shape[1],frame.shape[0])
         iteration = 5
 
 
-        cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
-                    iteration, cv.GC_INIT_WITH_RECT)
-        cv.imshow("grabCut",fgmask)
-        cv.waitKey(200)
+        # cv.grabCut(frame, mask, rect, bgdModel, fgdModel,
+        #             iteration, cv.GC_INIT_WITH_RECT)
+        # cv.imshow("grabCut",fgmask)
+        # cv.waitKey(200)
 
         if show_fgmask:
             segm = fgmask
         else:
             segm = (frame * 0.5).astype('uint8')
-            cv.add(frame, (100, 100, 0, 0), segm, fgmask)
+            cv.add((100, 0, 0, 0), (100, 0, 0, 0), segm, fgmask)
 
-        # 显示当前方法
-        cv.putText(segm, ALGORITHMS_TO_EVALUATE[algo_index][1], (10, 30), cv.FONT_HERSHEY_PLAIN, 2.0, (255, 0, 255),
-                    2,
-                    cv.LINE_AA)
-        # 显示当前线程数
-        cv.putText(segm, str(nthreads) + " threads", (10, 60), cv.FONT_HERSHEY_PLAIN, 2.0, (255, 0, 255), 2,
-                    cv.LINE_AA)
-        # 显示当前每帧执行时间
-        # cv.putText(segm, "averageTime {} s".format(average_Time), (10, 90), cv.FONT_HERSHEY_PLAIN, 2.0,(255, 0, 255), 2, cv.LINE_AA);
 
         cv.imshow('some', segm)
         key = cv.waitKey(1) & 0xFF
