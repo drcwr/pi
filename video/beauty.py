@@ -141,10 +141,10 @@ def invent(cap,th):
                 if iterations > 2 :
                     print "invent",iterations
                     diff = cv.absdiff(previousFrame,nextFrame)
-                    # cv.imshow("cap", diff)
+                    cv.imshow("diff", diff)
                     # cv.waitKey(100)
                     mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
-                    # cv.imshow("cap", mask)
+                    cv.imshow("mask", mask)
                     # cv.waitKey(100)
                     # th = 3
                     isMask = mask > th
