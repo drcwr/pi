@@ -208,7 +208,6 @@ def bg(num):
 
 
         mask = np.zeros(frame.shape[:2], np.uint8)
-        r = np.zeros(frame, np.uint8)
         bgdModel = np.zeros((1, 65), np.float64)
         fgdModel = np.zeros((1, 65), np.float64)
         rect = (1,1,frame.shape[1],frame.shape[0])
