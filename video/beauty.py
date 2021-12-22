@@ -171,7 +171,7 @@ ALGORITHMS_TO_EVALUATE = [
     (cv.bgsegm.createBackgroundSubtractorMOG(), 'MOG'),
     (cv.createBackgroundSubtractorMOG2(), 'MOG2'),
     # (cv.bgsegm.createBackgroundSubtractorGSOC(), 'GSOC'),
-    (cv.bgsegm.createBackgroundSubtractorLSBP(), 'LSBP'),
+    # (cv.bgsegm.createBackgroundSubtractorLSBP(), 'LSBP'),
 ]
 
 
