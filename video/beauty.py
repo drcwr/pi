@@ -208,13 +208,14 @@ def bg(num):
 
 
         mask = np.zeros(frame.shape[:2], np.uint8)
+        r = np.zeros(frame, np.uint8)
         bgdModel = np.zeros((1, 65), np.float64)
         fgdModel = np.zeros((1, 65), np.float64)
         rect = (1,1,frame.shape[1],frame.shape[0])
         iteration = 5
 
 
-        # cv.grabCut(frame, mask, rect, bgdModel, fgdModel,
+        # cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
         #             iteration, cv.GC_INIT_WITH_RECT)
         # cv.imshow("grabCut",fgmask)
         # cv.waitKey(200)
@@ -223,7 +224,7 @@ def bg(num):
             segm = fgmask
         else:
             segm = (frame * 0.5).astype('uint8')
-            cv.add((100, 0, 0, 0), (100, 0, 0, 0), segm, fgmask)
+            cv.add(frame, (100, 0, 0, 0), segm, fgmask)
 
 
         cv.imshow('some', segm)
