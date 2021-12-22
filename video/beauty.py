@@ -205,8 +205,17 @@ def bg(num):
 
         cv.imshow("fgmask",fgmask)
         cv.waitKey(200)
-        p-fg = Process(fgmask)
-        cv.imshow("fgmask",p-fg)
+
+
+        mask = np.zeros(frame.shape[:2], np.uint8)
+        bgdModel = np.zeros((1, 65), np.float64)
+        fgdModel = np.zeros((1, 65), np.float64)
+        rect = (1,1,result.shape[1],result.shape[0])
+
+
+        cv.grabCut(fgmask, mask, rect, bgdModel, fgdModel,
+                    iteration, cv2.GC_INIT_WITH_RECT)
+        cv.imshow("grabCut",fgmask)
         cv.waitKey(200)
 
         if show_fgmask:
