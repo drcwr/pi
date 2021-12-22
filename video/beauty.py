@@ -1,5 +1,5 @@
 # # -*- coding:utf-8 -*-
-import cv2 as cv
+import cv as cv
 import os
 import numpy as np
 import time
@@ -162,6 +162,79 @@ def invent(cap,th):
             else:
                 print "else"
 
+
+# TODO 背景减除算法集合
+ALGORITHMS_TO_EVALUATE = [
+    (cv.bgsegm.createBackgroundSubtractorGMG(20, 0.7), 'GMG'),
+    (cv.bgsegm.createBackgroundSubtractorCNT(), 'CNT'),
+    (cv.createBackgroundSubtractorKNN(), 'KNN'),
+    (cv.bgsegm.createBackgroundSubtractorMOG(), 'MOG'),
+    (cv.createBackgroundSubtractorMOG2(), 'MOG2'),
+    (cv.bgsegm.createBackgroundSubtractorGSOC(), 'GSOC'),
+    (cv.bgsegm.createBackgroundSubtractorLSBP(), 'LSBP'),
+]
+
+
+def bg():
+    # 背景分割识别器序号
+    algo_index = 0
+    subtractor = ALGORITHMS_TO_EVALUATE[algo_index][0]
+    videoPath = "./video/vtest.avi"
+    show_fgmask = False
+
+    # 获得运行环境CPU的核心数
+    nthreads = cv.getNumberOfCPUs()
+    # 设置线程数
+    cv.setNumThreads(nthreads)
+
+    # 读取视频
+    capture = cv.VideoCapture(videoPath)
+
+    # 当前帧数
+    frame_num = 0
+    # 总执行时间
+    sum_Time = 0.0
+
+    while True:
+        ret, frame = capture.read()
+        if not ret:
+            return
+        begin_time = time()
+        fgmask = subtractor.apply(frame)
+        end_time = time()
+        run_time = end_time - begin_time
+        sum_Time = sum_Time + run_time
+        # 平均执行时间
+        average_Time = sum_Time / (frame_num + 1)
+
+        if show_fgmask:
+            segm = fgmask
+        else:
+            segm = (frame * 0.5).astype('uint8')
+            cv.add(frame, (100, 100, 0, 0), segm, fgmask)
+
+        # 显示当前方法
+        cv.putText(segm, ALGORITHMS_TO_EVALUATE[algo_index][1], (10, 30), cv.FONT_HERSHEY_PLAIN, 2.0, (255, 0, 255),
+                    2,
+                    cv.LINE_AA)
+        # 显示当前线程数
+        cv.putText(segm, str(nthreads) + " threads", (10, 60), cv.FONT_HERSHEY_PLAIN, 2.0, (255, 0, 255), 2,
+                    cv.LINE_AA)
+        # 显示当前每帧执行时间
+        cv.putText(segm, "averageTime {} s".format(average_Time), (10, 90), cv.FONT_HERSHEY_PLAIN, 2.0,
+                    (255, 0, 255), 2, cv.LINE_AA);
+
+        cv.imshow('some', segm)
+        key = cv.waitKey(1) & 0xFF
+        frame_num = frame_num + 1
+
+        # 按'q'健退出循环
+        if key == ord('q'):
+            break
+
+    cv.destroyAllWindows()
+
+
 ###################
 #    main        #
 # img = cv.imread('./test.jpg')
@@ -173,5 +246,6 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         th = int(sys.argv[1])
     # img = cv.imread('./test.jpg')
-    cap_invent(th)
+    # cap_invent(th)
+    bg()
 
