@@ -188,7 +188,8 @@ def bg():
     cv.setNumThreads(nthreads)
 
     # 读取视频
-    capture = cv.VideoCapture(videoPath)
+    # capture = cv.VideoCapture(videoPath)
+    capture = cv.VideoCapture(0)
 
     # 当前帧数
     frame_num = 0
