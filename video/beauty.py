@@ -140,11 +140,11 @@ def invent(cap):
                 if iterations > 2 :
                     print "invent",iterations
                     diff = cv.absdiff(previousFrame,nextFrame)
-                    cv.imshow("cap", diff)
-                    cv.waitKey(100)
+                    # cv.imshow("cap", diff)
+                    # cv.waitKey(100)
                     mask = cv.cvtColor(diff,cv.COLOR_BGR2GRAY)
-                    cv.imshow("cap", mask)
-                    cv.waitKey(100)
+                    # cv.imshow("cap", mask)
+                    # cv.waitKey(100)
                     th = 3
                     isMask = mask > th
                     nonMask = mask <= th
@@ -156,8 +156,8 @@ def invent(cap):
                     result[nonMask] = resized[nonMask]
                     print "invent"
                     cv.imshow("invent",result)
-            except:
-                print "except,%d",iterations
+            except Exception as ex :
+                print "except,%s"%ex,iterations
             else:
                 print "else"
 
