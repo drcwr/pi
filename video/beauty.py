@@ -205,6 +205,9 @@ def bg(num):
 
         cv.imshow("fgmask",fgmask)
         cv.waitKey(200)
+        p-fg = Process(fgmask)
+        cv.imshow("fgmask",p-fg)
+        cv.waitKey(200)
 
         if show_fgmask:
             segm = fgmask
