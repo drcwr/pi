@@ -175,9 +175,9 @@ ALGORITHMS_TO_EVALUATE = [
 ]
 
 
-def bg():
+def bg(num):
     # 背景分割识别器序号
-    algo_index = 0
+    algo_index = num
     subtractor = ALGORITHMS_TO_EVALUATE[algo_index][0]
     videoPath = "./video/vtest.avi"
     show_fgmask = False
@@ -243,10 +243,10 @@ def bg():
 #################
 
 if __name__ == '__main__':
-    th = 3
+    arg = 0
     if len(sys.argv) > 1:
-        th = int(sys.argv[1])
+        arg = int(sys.argv[1])
     # img = cv.imread('./test.jpg')
-    # cap_invent(th)
-    bg()
+    # cap_invent(arg)
+    bg(arg)
 
