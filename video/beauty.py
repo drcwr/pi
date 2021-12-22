@@ -199,12 +199,13 @@ def bg():
     while True:
         ret, frame = capture.read()
         if not ret:
+            print "not cap"
             return
-        begin_time = time()
-        fgmask = subtractor.apply(frame)
-        end_time = time()
-        run_time = end_time - begin_time
-        sum_Time = sum_Time + run_time
+        # begin_time = time()
+        # fgmask = subtractor.apply(frame)
+        # end_time = time()
+        # run_time = end_time - begin_time
+        # sum_Time = sum_Time + run_time
         # 平均执行时间
         average_Time = sum_Time / (frame_num + 1)
 
@@ -222,8 +223,7 @@ def bg():
         cv.putText(segm, str(nthreads) + " threads", (10, 60), cv.FONT_HERSHEY_PLAIN, 2.0, (255, 0, 255), 2,
                     cv.LINE_AA)
         # 显示当前每帧执行时间
-        cv.putText(segm, "averageTime {} s".format(average_Time), (10, 90), cv.FONT_HERSHEY_PLAIN, 2.0,
-                    (255, 0, 255), 2, cv.LINE_AA);
+        # cv.putText(segm, "averageTime {} s".format(average_Time), (10, 90), cv.FONT_HERSHEY_PLAIN, 2.0,(255, 0, 255), 2, cv.LINE_AA);
 
         cv.imshow('some', segm)
         key = cv.waitKey(1) & 0xFF
