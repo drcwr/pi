@@ -204,7 +204,7 @@ def bg(num):
         mask = np.zeros(frame.shape[:2], np.uint8)
         bgdModel = np.zeros((1, 65), np.float64)
         fgdModel = np.zeros((1, 65), np.float64)
-        rect = (1,1,frame.shape[1],frame.shape[0])
+        rect = (1,1,frame.shape[1]-2,frame.shape[0]-2)
         iteration = 5
 
         if show_fgmask:
@@ -217,10 +217,10 @@ def bg(num):
 
 
 
-        # cv.grabCut(frame, mask, rect, bgdModel, fgdModel,
-        #             iteration, cv.GC_INIT_WITH_RECT)
-        # cv.imshow("grabCut",frame)
-        # cv.waitKey(200)
+        cv.grabCut(frame, mask, rect, bgdModel, fgdModel,
+                    iteration, cv.GC_INIT_WITH_RECT)
+        cv.imshow("grabCut",frame)
+        cv.waitKey(200)
 
         key = cv.waitKey(1) & 0xFF
         frame_num = frame_num + 1
