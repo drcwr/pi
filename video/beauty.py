@@ -197,7 +197,7 @@ def bg(num):
             return
 
         bodys = detect_body(frame)
-        if len(bodys) > 0:
+        if bodys is not None > 0:
             for body in bodys:
                 draw_rectangle(frame,body)
 
