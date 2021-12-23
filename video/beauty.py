@@ -166,12 +166,9 @@ def invent(cap,th):
 # TODO 背景减除算法集合
 ALGORITHMS_TO_EVALUATE = [
     (cv.bgsegm.createBackgroundSubtractorGMG(20, 0.7), 'GMG'),
-    # (cv.bgsegm.createBackgroundSubtractorCNT(), 'CNT'),
     (cv.createBackgroundSubtractorKNN(), 'KNN'),
     (cv.bgsegm.createBackgroundSubtractorMOG(), 'MOG'),
     (cv.createBackgroundSubtractorMOG2(), 'MOG2'),
-    # (cv.bgsegm.createBackgroundSubtractorGSOC(), 'GSOC'),
-    # (cv.bgsegm.createBackgroundSubtractorLSBP(), 'LSBP'),
 ]
 
 
@@ -179,7 +176,6 @@ def bg(num):
     # 背景分割识别器序号
     algo_index = num
     subtractor = ALGORITHMS_TO_EVALUATE[algo_index][0]
-    videoPath = "./video/vtest.avi"
     show_fgmask = False
 
     # 获得运行环境CPU的核心数
@@ -193,8 +189,6 @@ def bg(num):
 
     # 当前帧数
     frame_num = 0
-    # 总执行时间
-    # sum_Time = 0.0
 
     while True:
         ret, frame = capture.read()
