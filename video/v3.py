@@ -13,7 +13,7 @@ while cap.isOpened():
         print "cap read false"
     else:
         #cv.imshow('Image',img)
-        faceCascade = cv.CascadeClassifier(r'./haarcascade_frontalface_default.xml')
+        faceCascade = cv.CascadeClassifier(r'/usr/local/lib/python3.7/dist-packages/cv2/data/haarcascade_frontalface_default.xml')
         faces = faceCascade.detectMultiScale(img,scaleFactor = 1.1,minNeighbors = 5,minSize = (10,10),flags = cv.CASCADE_SCALE_IMAGE)
         #cv.putText(img,"Find"+str(len(faces))+"faces",(10,img.shape[0]-5),cv.FONT_HERSHEY_SIMPLEX,1,(255,232,133),2)
         #for (x,y,w,h) in faces:
