@@ -200,6 +200,8 @@ def bg(num):
         if bodys is not None > 0:
             for body in bodys:
                 draw_rectangle(frame,body)
+        cv.imshow('upper', frame)
+        cv.waitKey(200)
 
         fgmask = subtractor.apply(frame)
 
@@ -235,7 +237,7 @@ def detect_body(img):
     #将测试图像转换为灰度图像，因为opencv人脸检测器需要灰度图像
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     #加载OpenCV人脸检测分类器Haar
-    face_cascade = cv.CascadeClassifier('/usr/local/lib/python3.7/dist-packages/cv2/data/haarcascade_fullbody.xml')
+    face_cascade = cv.CascadeClassifier('/usr/local/lib/python3.7/dist-packages/cv2/data/haarcascade_upperbody.xml')
     #检测多尺度图像，返回值是一张脸部区域信息的列表（x,y,宽,高）
     bodys = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5)
     # 如果未检测到面部，则返回原始图像
