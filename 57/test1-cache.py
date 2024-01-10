@@ -67,28 +67,28 @@ def destroy():
     GPIO.cleanup()             # 
 
 def backward():
-    while True:
         print ("backward...")
         backward0(0.01, 10)   # 0.0001s   1000
         backward0(0.001, 50)   # 0.0001s   1000
-        backward0(0.0001, 100)   # 0.0001s   1000
-        backward0(0.00002, 10000)   # 0.0001s   1000
-        
-        print ("stop...")
-        stop()                 # stop
-        destroy()
-
-def forward():
-    while True:
-        print ("forward...")
-        forward0(0.01, 10)   # 0.0001s   1000
-        forward0(0.001, 50)   # 0.0001s   1000
-        forward0(0.0001, 100)   # 0.0001s   1000
-        forward0(0.00002, 10000)   # 0.0001s   1000
+        backward0(0.0001, 1000)   # 0.0001s   1000
+        backward0(0.0001, 1000)   # 0.0001s   1000
         
         print ("stop...")
         stop()
-        destroy()
+        # destroy()
+
+def forward():
+        print ("forward...")
+        forward0(0.0001, 5000)   # 0.0001s   1000
+        forward0(0.00009, 1000)   # 0.0001s   1000
+        #forward0(0.00007, 1000)   # 0.0001s   1000
+        forward0(0.00005, 1000)   # 0.0001s   1000
+        forward0(0.00003, 2000)   # 0.0001s   1000
+        forward0(0.00003, 2000)   # 0.0001s   1000
+        forward0(0.00003, 2000)   # 0.0001s   1000
+        
+        print ("stop...")
+        stop()
 
 if __name__ == '__main__':     # Program start from here
     setup()
